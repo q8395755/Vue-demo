@@ -1,0 +1,17 @@
+.tips{
+    background:rgba(0,0,0,.4);
+    position:fixed;
+    z-index:13;
+    left:0;
+    top:0;
+    width:2rem;
+    height:.5rem;
+    text-align:center;
+    color:#fff;
+    font-size:10px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    display:none;
+    transition:0.5s all;
+}
