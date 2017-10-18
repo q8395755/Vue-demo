@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta name=viewport id=vp content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"><title>program</title><link href=./favicon.ico rel=icon type=image/x-icon><link href=./static/css/app.627dada534af1807be19b72acf7490cd.css rel=stylesheet></head><script type=text/javascript>changeRem()
+    function changeRem(){
+        // // 把尺寸放大N倍（N是window.devicePixelRatio）
+      // var wd = document.documentElement.clientWidth*window.devicePixelRatio/10;
+      // //物理像素*设备像素比=真实像素
+
+      //这里我手动把设备像素比设为2，结果刚好就解决了手机浏览器器上的rem显示问题
+      var dpir = window.devicePixelRati;
+      dpir = 2;
+       var wd = document.documentElement.clientWidth*dpir/10;
+      document.getElementsByTagName("html")[0].style.fontSize = wd + "px";
+      
+      // 把屏幕的倍率缩小到N分之一（N是window.devicePixelRatio）
+      // var scale = 1/window.devicePixelRatio;
+      // var mstr = 'initial-scale='+ scale +', maximum-scale='+ scale +', minimum-scale='+ scale +', user-scalable=no';
+      // document.getElementById("vp").content = mstr;	
+      }
+      window.onresize=changeRem;</script><body><div id=app></div><script type=text/javascript src=./static/js/manifest.2ad1f9e2d3ff010e9673.js></script><script type=text/javascript src=./static/js/vendor.e15b99f9caf74442a9fd.js></script><script type=text/javascript src=./static/js/app.663e3be2280698ab8b90.js></script></body></html>
