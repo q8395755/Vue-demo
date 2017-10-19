@@ -16,7 +16,7 @@ const router = new VueRouter({
 	hashbang: true,
   	history: true,
 	  //百度Vue项目启动后首页URL带的#该怎么去掉?
-	// mode:'history',//打包项目要把mode: history注释掉
+	mode:'history',//打包项目要把mode: history注释掉
 	routes:[
 
 		{
