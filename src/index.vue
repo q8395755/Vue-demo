@@ -361,13 +361,13 @@
     data(){
       return {
        num:7,
-       data1:'' ,
        src:base.imgUrl,
        loading:'loading.gif',
        car:'car.png',
        chunfengsrc:base.imgUrl+'chunfeng/',
        buyNum:'',
        img21:'banner12.jpg',
+       data1:'',
       }
     },
     methods:{
@@ -392,11 +392,12 @@
 
       // 用一个变量指向this
       // 这样可以在axios里面调用它
-      var se = this;
-        axios.get('./static/index.json')
+      var oThis = this;
+      //在dev-server文件中引入json，然后用router模块模拟后台
+        axios.get('/goods')
        .then(function (response) {
           
-          se.data1 = response.data[0];
+          oThis.data1 = response.data[0];
           localStorage.data = JSON.stringify(response.data[0]);
           
         })
@@ -405,14 +406,19 @@
         }
         
       );
+
       
-    this.checkCar();
+      this.checkCar();
+      
+      
 		},
     updated(){
       //图片延迟加载
       var loadingImgs = document.querySelectorAll('.loading-imgs');
       for(var i=0;i<=loadingImgs.length-1;i++){
-        loadingImgs[i].src = loadingImgs[i].getAttribute("data-src");
+        loadingImgs[i].onload = function(){
+          this.src = this.getAttribute("data-src");
+        } 
       }
     }
   }

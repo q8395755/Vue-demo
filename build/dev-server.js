@@ -33,6 +33,14 @@ const autoOpenBrowser = !!config.dev.autoOpenBrowser
 const proxyTable = config.dev.proxyTable
 // 创建express服务器
 const app = express()
+
+var goodsData = require('../index.json')
+var router = express.Router()
+router.get("/goods", function (req,res) {
+  res.json(goodsData)
+})
+app.use(router)
+
 // webpack根据配置开始编译打包源码并返回compiler对象
 const compiler = webpack(webpackConfig)
 
