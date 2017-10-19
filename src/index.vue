@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app_box">
     <!--头部-->
     <!--<indexlist></indexlist>-->
     <div id="top">
