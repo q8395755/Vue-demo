@@ -34,12 +34,43 @@ const proxyTable = config.dev.proxyTable
 // 创建express服务器
 const app = express()
 
-var goodsData = require('../index.json')
-var router = express.Router()
-router.get("/goods", function (req,res) {
-  res.json(goodsData)
+// app.use(urlencodedParser);
+// app.use(bodyParser.json())
+//配置成路由去请求
+//下面staticPath还有一种方法
+var goodsData = require('../static/index.json')
+
+var Router = express.Router()
+//想要post请求的话
+//在原有的基础上加上下面代码即可
+var bodyParser = require("body-parser")
+
+
+app.use(bodyParser.urlencoded({    
+  extended: true
+}));
+
+app.use(bodyParser.json())
+
+
+
+//获取商品信息
+app.get('/getgoods',function (req,res) {
+//   res.json([body]) 发送一个json的响应
+// 这个方法和将一个对象或者一个数组作为参数传递给res.send()方法的效果相同
+  res.json(goodsData);
+
 })
-app.use(router)
+
+//搜索商品
+//这里刚开始没有获取到数据，
+// 这个问题出现的原因，
+// 归根结底，不管php、java亦或是node。想要在后台接收到POST的数据，
+// 都需要POST在发送时使用application/x-www-form-urlencoded，具体操作就是
+app.post('/search',function(req,res){
+  console.log(req.body);
+})
+
 
 // webpack根据配置开始编译打包源码并返回compiler对象
 const compiler = webpack(webpackConfig)
@@ -95,6 +126,7 @@ app.use(devMiddleware)
 // 提供static文件夹上的静态文件服务
 const staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
+// app.use('/static', express.static('./static'))
 // 访问链接
 const uri = 'http://localhost:' + port
 // 创建promise，在应用服务启动之后resolve

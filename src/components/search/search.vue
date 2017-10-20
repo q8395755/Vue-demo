@@ -21,22 +21,23 @@
             </div>
             <div class="search_button"><div ref="searchButton">搜索</div></div>
         </div>
+        <!--排序-->
+        <div class="search_sort" v-if="ajaxGo">
+                
+        </div>        
         <div class="search_main ">
             <div class="search_ready flex_center" v-if="ajaxGo==false">
                 
             </div>
-            <!--排序-->
-            <div class="ajaxGo==true">
-                
-            </div>
+
             <!--商品展示-->
-            <div v-if="ajaxGo==true" v-for="attr in searchData" class="searchData_box">
+            <div v-if="ajaxGo" v-for="attr in searchData" class="searchData_box">
                 <router-link :to="{path:'/details',query:{id:attr.id,type:attr.type}}" class="flex_center link">
                     <div class="box_left">
                         <img :src="imgUrl + attr.img">
                     </div>
                     <div class="box_right flex_center">
-                        
+            
                         <p class="b_r_title">{{attr.title}}</p>
                         <p class="b_r_yuanjia">原价：￥{{attr.yuanjia}}.00</p>
                         <p class="b_r_price">￥<span>{{attr.price}}.00</span></p>
@@ -54,25 +55,7 @@
   import base from '../../assets/js/global.js'
   import axios from 'axios';
   export default {
-      //局部注册自定义指令
-    // directives: {
-    //     btn:{
-    //          deep : true,
 
-    //         bind:function(el){
-    //            console.log(el); 
-    //         },
-    //         inserted: function(el){
-    //             console.log(el,2); 
-    //         },
-    //         update: function(el,value,arg){
-    //             console.log(el,value,arg)
-    //         },
-    //         componentUpdated: function(el){
-    //             console.log(el,4)
-    //         },
-    //     }
-    // },
     components: {
       
     },
@@ -161,15 +144,14 @@
                 //     
                 //     //总的查找失败就证明数据没数据
                 // }
-            //    axios.post('/search', {
-            //         searchText:oThis.searchText,
-            //     })
-            //     .then(function (response) {
-            //         console.log(response);
-            //     })
-            //     .catch(function (error) {
-            //         console.log(error);
-            //     });
+                axios({
+                    method:"POST",
+                    url:'/search',
+                    data:{
+                       searchText:oThis.searchText,
+                    },
+
+                });
             }
         })
       },

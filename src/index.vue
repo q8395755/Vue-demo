@@ -394,9 +394,8 @@
       // 这样可以在axios里面调用它
       var oThis = this;
       //在dev-server文件中引入json，然后用router模块模拟后台
-        axios.get('/goods')
+        axios.get('/getgoods')
        .then(function (response) {
-          
           oThis.data1 = response.data[0];
           localStorage.data = JSON.stringify(response.data[0]);
           
