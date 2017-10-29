@@ -49,7 +49,12 @@ const router = new VueRouter({
 			component:SearchCompont,
 			children:[]
 		},		
-		
+		{
+			path:'/mine',
+			name:'mine'	,
+			component:MineCompont,
+			children:[]
+		},		
 	]
 
 })

@@ -69,6 +69,24 @@ app.get('/getgoods',function (req,res) {
 // 都需要POST在发送时使用application/x-www-form-urlencoded，具体操作就是
 app.post('/search',function(req,res){
   console.log(req.body);
+  var oData = goodsData[0];
+  var oSearchData = [];
+  var onOff = false;
+  for(var attr in oData){
+      //遍历每一项
+      for(var i=0;i<=oData[attr].length-1;i++){
+          //查找到
+          
+          if(oData[attr][i].title.indexOf(req.body.searchText)>=0){
+              //找一个数组把找到的数据存起来
+               oSearchData.push(oData[attr][i]);
+              
+          }
+
+      }
+                  
+  }
+  res.json(oSearchData);  
 })
 
 

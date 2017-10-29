@@ -25,14 +25,14 @@
         <div class="search_sort" v-if="ajaxGo">
                 
         </div>        
-        <div class="search_main ">
-            <div class="search_ready flex_center" v-if="ajaxGo==false">
+        <div class="search_main">
+            <div class="search_ready flex_center" v-if="!ajaxGo">
                 
-            </div>
+            </div>            
 
             <!--商品展示-->
-            <div v-if="ajaxGo" v-for="attr in searchData" class="searchData_box">
-                <router-link :to="{path:'/details',query:{id:attr.id,type:attr.type}}" class="flex_center link">
+            <div v-else v-for="attr in searchData" class="searchData_box">
+                <router-link :to="{path:'/details',query:{id:attr.id,type:attr.type}}" class="flex_center link" >
                     <div class="box_left">
                         <img :src="imgUrl + attr.img">
                     </div>
@@ -44,6 +44,14 @@
                         
                     </div>
                 </router-link>
+  
+            </div> 
+            <div class="no_search " v-show="showData">
+                <div class="n_s_img_box flex_center">
+                    <img src="/static/imgs/nosearch.png"/>
+                    <p>没有找到合适的商品,换个别的词试试?</p>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -69,12 +77,14 @@
         //搜索内容
         searchText:'',
         //判断搜索内容有没有值   
-        searchZhi:false,     
+        searchZhi:false,
+        //有没有ajax     
         ajaxGo:false,
         //搜索数据存放
         searchData:[],
-        showD:false,
+        showData:false,
         imgUrl:base.imgUrl + 'chunfeng/',
+        
       }
     },
     methods:{
@@ -115,35 +125,7 @@
                 console.log('请输入内容');
             }else{
                 oThis.ajaxGo = true;
-                var oSearchData = [];
-                //拿到所有数据
-                var oData = JSON.parse(localStorage.data);
-                //遍历种类
-                for(var attr in oData){
-                    //遍历每一项
-                    for(var i=0;i<=oData[attr].length-1;i++){
-                        //查找到
-                        if(oData[attr][i].title.indexOf(oThis.searchText)>=0){
-                        //找一个数组把找到的数据存起来
-                            oSearchData.push(oData[attr][i]);
-                        }
-                    }
-                
-                }
-                
-                oThis.searchData = oSearchData;
-                console.log(oSearchData);
-                // for(var i=0;i<=oData.length-1;i++){
-                //     //查找到
-                //     
-                //     else{
-                //         //这里查找失败不代表没有
-                //         // console.log('查找失败');
-
-                //     }
-                //     
-                //     //总的查找失败就证明数据没数据
-                // }
+                //请求
                 axios({
                     method:"POST",
                     url:'/search',
@@ -151,6 +133,24 @@
                        searchText:oThis.searchText,
                     },
 
+                })
+                .then(function (response) {
+                    //没找到
+                    if(response.data==''){
+                        console.log('没有找到');
+                        oThis.showData = true;
+                        oThis.searchData = '';
+                       
+                    }
+                    //找到
+                    else{
+                        oThis.showData =false;
+                        oThis.searchData = response.data;
+                    }
+                    
+                })
+                .catch(function (error) {
+                    console.log(error);
                 });
             }
         })

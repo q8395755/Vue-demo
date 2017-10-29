@@ -20,12 +20,14 @@
       display:flex;
       justify-content:center;
       flex-direction:column;
+      line-height: 1;
     }
     .d_t_left,.d_t_right{
       width:0.43rem;
       display:flex;
       justify-content:center;
       flex-direction:column;
+      line-height: 1;
       .d_t_link{
         height:0.43rem;
         border-radius:50%;

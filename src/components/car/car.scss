@@ -17,14 +17,16 @@
       justify-content:center;
       flex-direction:column;
       color:#fff;
+      line-height: 1;
     }
     .d_t_left,.d_t_right{
       width:0.43rem;
       display:flex;
       justify-content:center;
       flex-direction:column;
+      line-height: 1;
       .d_t_link{
-        height:0.43rem;
+        
         border-radius:50%;
         display:flex;
         justify-content:center;
@@ -43,8 +45,8 @@
       }
     }
     .d_t_right{
-      .icon-shouye{
-        font-size:0.3rem;
+      .edit{
+        font-size:0.2rem;
         display: flex;
         justify-content: center;
         color:#fff;
@@ -60,6 +62,11 @@
     background:#eee;
     font-size:12px;
     overflow-y:scroll;
+    .main_kong{
+      text-align:center;
+      margin-top:46%;
+      color:#888;
+    }
     .main_korea,.main_china{
       width:100%;
       margin-bottom:0.25rem;
@@ -86,7 +93,7 @@
             color:#fff;
             padding-left:.28rem;
             box-sizing:border-box;
-            background:url('../../../static/imgs/china.png') no-repeat .03rem .03rem #69f;
+            background:url('../../../static/imgs/epass.png') no-repeat .03rem .03rem #a357fa;
             background-size: .2rem .2rem;
           }
         }
@@ -174,7 +181,7 @@
       .m_k_top{
         .m_k_top_logo_box{
           .m_k_top_logo{
-            background:url('../../../static/imgs/epass.png') no-repeat .03rem .03rem #a357fa;
+            background:url('../../../static/imgs/china.png') no-repeat .03rem .03rem #69f;;
             background-size: .2rem .2rem;
           }
         }
@@ -223,19 +230,20 @@
     }
   }
 }
-.center{
-  display:flex;
-  justify-content:center;
-  flex-direction:column;
-}
-        .m_k_top_all_select_box{
-          width:0.21875rem;
-          height:100%;
 
-          .m_k_top_all_select{
-            width:0.21875rem;
-            height:0.21875rem;
-            border:1px solid #888;
-            border-radius:50%;
-          }
-        }
+.m_k_top_all_select_box{
+  width:0.21875rem;
+  height:100%;
+
+  .m_k_top_all_select{
+    width:0.21875rem;
+    height:0.21875rem;
+    border:1px solid #888;
+    border-radius:50%;
+  }
+  .select_color,.korea_color,.china_color,.m_color{
+    background:pink !important;
+    border:0 !important;
+    
+  }
+}
